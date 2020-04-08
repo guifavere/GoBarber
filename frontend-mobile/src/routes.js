@@ -11,9 +11,9 @@ export default function Routes() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen component={SignUp} name="SignUp" />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen component={SignIn} name="SignIn" />
+        <Stack.Screen component={SignUp} name="SignUp" />
       </Stack.Navigator>
     </NavigationContainer>
   );
