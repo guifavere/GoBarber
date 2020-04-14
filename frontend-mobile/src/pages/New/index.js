@@ -28,7 +28,11 @@ export default function New() {
         name="SelectProvider"
         options={{ title: 'Selecione o prestador' }}
       />
-      <Stack.Screen component={SelectDateTime} name="SelectDateTime" />
+      <Stack.Screen
+        component={SelectDateTime}
+        name="SelectDateTime"
+        options={{ title: 'Selecione o horário' }}
+      />
       <Stack.Screen component={Confirm} name="Confirm" />
     </Stack.Navigator>
   );
