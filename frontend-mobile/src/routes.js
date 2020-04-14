@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp';
 
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
+import New from './pages/New';
 
 export default function Routes() {
   const signed = useSelector((state) => state.auth.signed);
@@ -42,6 +43,17 @@ export default function Routes() {
               tabBarIcon: ({ color }) => (
                 <Icon name="event" size={20} color={color} />
               ),
+            }}
+          />
+          <Tab.Screen
+            component={New}
+            name="New"
+            options={{
+              tabBarLabel: 'Agendar',
+              tabBarIcon: ({ color }) => (
+                <Icon name="add-circle-outline" size={20} color={color} />
+              ),
+              tabBarVisible: false,
             }}
           />
           <Tab.Screen
