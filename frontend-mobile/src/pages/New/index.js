@@ -12,26 +12,35 @@ export default function New() {
 
   return (
     <Stack.Navigator
-      screenOptions={({ navigation }) => ({
+      screenOptions={{
         headerTransparent: true,
         headerTintColor: '#fff',
         headerLeftContainerStyle: { marginLeft: 20 },
-        headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
-            <Icon name="chevron-left" size={20} color="#fff" />
-          </TouchableOpacity>
-        ),
-      })}
+      }}
     >
       <Stack.Screen
         component={SelectProvider}
         name="SelectProvider"
-        options={{ title: 'Selecione o prestador' }}
+        options={({ navigation }) => ({
+          title: 'Selecione o prestador',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
+              <Icon name="chevron-left" size={20} color="#fff" />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         component={SelectDateTime}
         name="SelectDateTime"
-        options={{ title: 'Selecione o horário' }}
+        options={({ navigation }) => ({
+          title: 'Selecione o horário',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon name="chevron-left" size={20} color="#fff" />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen component={Confirm} name="Confirm" />
     </Stack.Navigator>
