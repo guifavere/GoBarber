@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import api from '~/services/api';
 
@@ -10,15 +10,17 @@ import { Container, Title, List } from './styles';
 export default function Dashboard({ navigation }) {
   const [appointments, setAppointments] = useState([]);
 
-  const loadAppointments = async () => {
+  const loadAppointments = useCallback(async () => {
     const res = await api.get('appointments');
 
     setAppointments(res.data);
-  };
+  }, []);
 
-  useEffect(() => navigation.addListener('focus', loadAppointments), [
-    navigation,
-  ]);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', loadAppointments);
+
+    return unsubscribe;
+  }, [navigation, loadAppointments]);
 
   const handleCancel = async (id) => {
     const res = await api.delete(`appointments/${id}`);
