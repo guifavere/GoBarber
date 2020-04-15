@@ -42,7 +42,18 @@ export default function New() {
           ),
         })}
       />
-      <Stack.Screen component={Confirm} name="Confirm" />
+      <Stack.Screen
+        component={Confirm}
+        name="Confirm"
+        options={({ navigation }) => ({
+          title: 'Confirmar agendamento',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon name="chevron-left" size={20} color="#fff" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
     </Stack.Navigator>
   );
 }
