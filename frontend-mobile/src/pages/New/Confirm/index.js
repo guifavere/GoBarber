@@ -19,7 +19,7 @@ export default function Confirm({ route, navigation }) {
   const handleAddAppointment = async () => {
     await api.post('appointments', { provider_id: provider.id, date: time });
 
-    navigation.navigate('Dashboard');
+    navigation.reset({ index: 0, routes: [{ name: 'Dashboard' }] });
   };
 
   return (

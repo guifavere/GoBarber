@@ -7,18 +7,18 @@ import Appointment from '~/components/Appointment';
 
 import { Container, Title, List } from './styles';
 
-export default function Dashboard() {
+export default function Dashboard({ navigation }) {
   const [appointments, setAppointments] = useState([]);
 
-  useEffect(() => {
-    const loadAppointments = async () => {
-      const res = await api.get('appointments');
+  const loadAppointments = async () => {
+    const res = await api.get('appointments');
 
-      setAppointments(res.data);
-    };
+    setAppointments(res.data);
+  };
 
-    loadAppointments();
-  }, []);
+  useEffect(() => navigation.addListener('focus', loadAppointments), [
+    navigation,
+  ]);
 
   const handleCancel = async (id) => {
     const res = await api.delete(`appointments/${id}`);
